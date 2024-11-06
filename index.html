@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blue MC Map</title>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
+    <link href="https://fonts.cdnfonts.com/css/minecraft-3" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .banner {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .banner a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .banner a:hover {
+            text-decoration: underline;
+        }
+        .banner a.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 60px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <a href="#" onclick="updateIframe(this, './Overworld_Day/index.html')" class="active">Overworld</a>
+        <a href="#" onclick="updateIframe(this, './Night/index.html')">Night</a>
+        <a href="#" onclick="updateIframe(this, './Portals/index.html')">Portals</a>
+        <p id="N_Cords"></p>
+
+    </div>
+    <iframe class="iframe-container" id="contentFrame" src="./Overworld_Day/index.html"></iframe>
+
+    <script>
+        function updateIframe(link, src) {
+            var iframe = document.getElementById('contentFrame');
+            iframe.src = src;
+
+            // Remove active class from all links
+            var links = document.querySelectorAll('.banner a');
+            links.forEach(function(link) {
+                link.classList.remove('active');
+            });
+
+            // Add active class to the clicked link
+            link.classList.add('active');
+        }
+    </script>
+
+   
+
+<script type="text/javascript">        //const intervalID = setInterval(myCallback, 500);
+const iframe = document.getElementById("contentFrame").contentWindow
+iframe.addEventListener("mousemove", (e) => {
+    //function myCallback() {
+        let elements = document.getElementById("contentFrame").contentWindow.document.querySelector(".ol-mouse-position")
+        let pos = elements.textContent;
+                        pos = pos.split(", ");
+                        let x = Math.round(parseInt(pos[0]) / 8);
+                        let y = Math.round(parseInt(pos[1]) / 8);
+                        //console.log(x, y);
+                        document.getElementById("N_Cords").innerHTML = "Nether Cords: " + x + ", " + y;
+    //}
+    });</script>
+
+</body>
+</html>
