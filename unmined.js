@@ -8,7 +8,7 @@ class RegionMap {
         this.worldWidth = worldWidth;
         this.worldHeight = worldHeight;
     }
-
+    
     hasTile(tileX, tileZ, unminedZoomLevel) {
         const zoomFactor = Math.pow(2, unminedZoomLevel);
 
@@ -230,12 +230,19 @@ class Unmined {
             var item = markers[i];
             var longitude = item.x;
             var latitude = item.z;
+                        
+            //added feature2 & style2
 
             var feature = new ol.Feature({
                 geometry: new ol.geom.Point(ol.proj.transform([longitude, latitude], this.dataProjection, this.viewProjection))
             });
+            var feature2 = new ol.Feature({
+                geometry: new ol.geom.Point(ol.proj.transform([longitude, latitude], this.dataProjection, this.viewProjection))
+            });
 
             var style = new ol.style.Style();
+            var style2 = new ol.style.Style();
+
             if (item.image)
                 style.setImage(new ol.style.Icon({
                     src: item.image,
@@ -245,6 +252,17 @@ class Unmined {
 
             if (item.text) {
                 style.setText(new ol.style.Text({
+                    text: item.text,
+                    font: item.font,
+                    offsetX: (item.offsetX + 2),
+                    offsetY: (item.offsetY + 2),
+                    fill: item.textColor ? new ol.style.Fill({
+                        color: "black"
+                    }) : null,
+                    padding: item.textPadding ?? [2, 4, 2, 4]
+                }));
+
+                style2.setText(new ol.style.Text({
                     text: item.text,
                     font: item.font,
                     offsetX: item.offsetX,
@@ -265,11 +283,15 @@ class Unmined {
                         width: item.textBackgroundStrokeWidth
                     }) : null,
                 }));
+
             }
 
+            feature2.setStyle(style2);
             feature.setStyle(style);
 
             features.push(feature);
+            features.push(feature2);
+
         }
 
         var vectorSource = new ol.source.Vector({

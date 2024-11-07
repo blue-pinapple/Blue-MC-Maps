@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blue MC Map</title>
@@ -63,12 +64,15 @@
 
             // Add active class to the clicked link
             link.classList.add('active');
+            setTimeout(Nether, 1000);
         }
     </script>
 
    
 
 <script type="text/javascript">        //const intervalID = setInterval(myCallback, 500);
+Nether()
+function Nether() {
 const iframe = document.getElementById("contentFrame").contentWindow
 iframe.addEventListener("mousemove", (e) => {
     //function myCallback() {
@@ -80,7 +84,55 @@ iframe.addEventListener("mousemove", (e) => {
                         //console.log(x, y);
                         document.getElementById("N_Cords").innerHTML = "Nether Cords: " + x + ", " + y;
     //}
-    });</script>
-
+    });
+    }</script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: rgb(255, 255, 255);
+        }
+        .banner {
+            position:absolute;
+            top: 0.5em;
+            left: 3em;
+            padding: 5px 3px;
+            background-color: rgba(255, 255, 255, .4);
+            border-radius: 4px;
+            backdrop-filter: blur(5px) brightness(150%);
+        }
+        .banner:hover {
+            background-color: rgba(255, 255, 255, .6);
+            
+        }
+        .banner a {
+            height: 1.375em;
+            margin: 0;
+            padding: 3px 0.55em;
+            line-height: 0.4em;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            background-color: rgba(0,60,136,.5);
+            border: none;
+            border-radius: 2px;
+        }
+        .banner p {
+        color: rgb(98, 27, 15);
+        }
+        .banner a:hover {
+            background-color: rgba(0,60,136,.7);
+        }
+        .banner a.active {
+            font-weight: bold;
+            padding: 3px 0.35em;
+        }
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 4px);
+ 
+        }
+    </style>
 </body>
 </html>
