@@ -36,7 +36,7 @@
         }
         .iframe-container {
             width: 100%;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 60px - 2em);
             border: none;
         }
     </style>
@@ -46,7 +46,7 @@
         <a href="#" onclick="updateIframe(this, './Overworld_Day/index.html')" class="active">Overworld</a>
         <a href="#" onclick="updateIframe(this, './Night/index.html')">Night</a>
         <a href="#" onclick="updateIframe(this, './Portals/index.html')">Portals</a>
-        <p id="N_Cords"></p>
+        <p id="N_Cords">Nether Cords: NaN</p>
 
     </div>
     <iframe class="iframe-container" id="contentFrame" src="./Overworld_Day/index.html"></iframe>
@@ -70,22 +70,31 @@
 
    
 
-<script type="text/javascript">        //const intervalID = setInterval(myCallback, 500);
+<script type="text/javascript">    
 Nether()
 function Nether() {
-const iframe = document.getElementById("contentFrame").contentWindow
-iframe.addEventListener("mousemove", (e) => {
-    //function myCallback() {
+    const iframe = document.getElementById("contentFrame").contentWindow
+    iframe.addEventListener("mousemove", (e) => {
         let elements = document.getElementById("contentFrame").contentWindow.document.querySelector(".ol-mouse-position")
         let pos = elements.textContent;
-                        pos = pos.split(", ");
-                        let x = Math.round(parseInt(pos[0]) / 8);
-                        let y = Math.round(parseInt(pos[1]) / 8);
-                        //console.log(x, y);
-                        document.getElementById("N_Cords").innerHTML = "Nether Cords: " + x + ", " + y;
-    //}
+            pos = pos.split(", ");
+            let x = Math.round(parseInt(pos[0]) / 8);
+            let y = Math.round(parseInt(pos[1]) / 8);
+            //console.log(x, y);
+            ocument.getElementById("N_Cords").innerHTML = "Nether Cords: " + x + ", " + y;
+
     });
-    }</script>
+    iframe.addEventListener("touchmove", (e) => {
+        let elements = document.getElementById("contentFrame").contentWindow.document.querySelector(".ol-mouse-position")
+        let pos = elements.textContent;
+            pos = pos.split(", ");
+            let x = Math.round(parseInt(pos[0]) / 8);
+            let y = Math.round(parseInt(pos[1]) / 8);
+            //console.log(x, y);
+            ocument.getElementById("N_Cords").innerHTML = "Nether Cords: " + x + ", " + y;
+
+    });
+}</script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,6 +102,7 @@ iframe.addEventListener("mousemove", (e) => {
             padding: 0;
             background: rgb(255, 255, 255);
         }
+    @media screen and (min-width: 480px) {
         .banner {
             position:absolute;
             top: 0.5em;
@@ -133,6 +143,7 @@ iframe.addEventListener("mousemove", (e) => {
             height: calc(100vh - 4px);
  
         }
+    }
     </style>
 </body>
 </html>
