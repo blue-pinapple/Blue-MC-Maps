@@ -49,7 +49,6 @@ class RegionMap {
                     var bit = inx % 32;
                     var found = (b & (1 << bit)) != 0;
                     if (found) return true;
-                    return true;
                 }
             }
         }
