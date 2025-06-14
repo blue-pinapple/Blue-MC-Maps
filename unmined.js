@@ -609,9 +609,9 @@ class Unmined {
 
             contextmenu.clear();
             contextmenu.push({
-                text: `Copy /tp ${coordinates[0]} ~ ${coordinates[1]}`,
+                text: `Copy waypoint: ${coordinates[0]} ${coordinates[1]}`,
                 callback: () => {
-                    Unmined.copyToClipboard(`/tp ${coordinates[0]} ~ ${coordinates[1]}`);
+                    Unmined.copyToClipboard(`/waypoints setTemporary ${coordinates[0]} ~ ${coordinates[1]}`);
                 }
             })
             contextmenu.push('-');
